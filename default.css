@@ -16,7 +16,7 @@ footer{
 	align-content: center;
 }
 
-.roplo_page{
+.roplo_page, .roplo_profile{
 	margin: 10px 0px;
 	padding: 5px 10px;
 	border: 1px solid gray;
