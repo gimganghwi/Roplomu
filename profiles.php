@@ -7,17 +7,14 @@ include('./header.php');
 <main>
 	<?php for ( $i=0; $i<count($roplo['profiles']); ++$i) { ?>
 	<!-- 프로필 시작 -->
-	<div class='roplo_profile'>
+	<button class='roplo_profile' onclick="location.href='<?php echo $profile_url.'?name='.$roplo['profiles'][$i]['name'] ?>'">
 		<div>
 			<span> <?php echo $roplo['profiles'][$i]['name']?></span>
 		</div>
 		<div>
 			<span> <?php echo $roplo['profiles'][$i]['age']?></span>
 		</div>
-	</div>
-	<div>
-		
-	</div>
+	</button>
 	<!-- 프로필 끝-->
 	<?php } ?>
 </main>

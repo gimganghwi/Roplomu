@@ -1,4 +1,5 @@
 <?php
+include('./config.php');
 
 $roplo = Array();
 	$roplo['title'] = '모닝인포니';
@@ -28,4 +29,14 @@ $roplo = Array();
 			break;
 		}
 	}
+
+	$roplo['navigation'] = Array();
+		$roplo['navigation'][0] = Array();
+			$roplo['navigation'][0]['text'] = 'world';
+			$roplo['navigation'][0]['href'] = '#';
+			$roplo['navigation'][0]['style'] = 'color:Magenta';
+		$roplo['navigation'][1] = Array();
+			$roplo['navigation'][1]['text'] = 'profiles';
+			$roplo['navigation'][1]['href'] = $profiles_url;
+			$roplo['navigation'][1]['style'] = 'color:Blue';
 ?>

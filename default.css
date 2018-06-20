@@ -7,6 +7,8 @@ article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, 
 header{
 	background-color: Aliceblue;
 	color: Darkgray;
+}
+header #logo{
 	font-size: 2em;
 	text-align: center;
 }
