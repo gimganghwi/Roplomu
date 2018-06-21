@@ -23,3 +23,39 @@ footer{
 	padding: 5px 10px;
 	border: 1px solid gray;
 }
+
+.roplo_timeline{
+	list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
+.roplo_timeline li{
+    display: inline-block;
+    vertical-align: top;
+	overflow: hidden;
+}
+.roplo_timeline li.default {
+	padding: 6px;
+	margin: 0px;
+    border: 1px dotted Darkgray;
+	box-sizing: border-box;
+}
+.roplo_timeline li.default a{
+	color: LightGray;
+	text-decoration: none;
+}
+.roplo_timeline li.default a .time{
+	font-size: 1.2em;
+	text-align: center;
+	line-height: 0.6em;
+}
+.roplo_timeline li.default a .title{
+	font-size: 0.7em;
+	margin: 0.5em auto;
+	line-height: 0.6em;
+}
+.roplo_timeline li.default a .text{
+	font-size: 0.7em;
+	line-height: 0.6em;
+}
