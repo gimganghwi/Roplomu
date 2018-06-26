@@ -1,8 +1,16 @@
 <?php
 include('./config.php');
 
-$roplo = Array();
-	$roplo['title'] = '모닝인포니';
+if (isset($_REQUEST['roplo_id'])) {
+    $roplo_id = preg_replace('/[^a-z0-9_]/i', '', trim($_REQUEST['roplo_id']));
+    $roplo_id = substr($roplo_id, 0, 20);
+} else {
+    $roplo_id = '';
+}
+
+if ($roplo_id){
+	$roplo = sql_fetch(" select * from {$table_roplo} where id = '{$roplo_id}' ");
+}
 	$roplo['pages'] = Array();
 		$roplo['pages'][0] = Array();
 			$roplo['pages'][0]['writer'] = 'John Doe';
