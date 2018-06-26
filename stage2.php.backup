@@ -1,0 +1,188 @@
+<?php 
+// include('./common.php');
+ include('./head.php');
+// include('./header.php');
+?>
+
+<style>
+html, body{
+	height: 100%;
+	overflow-y: hidden;
+}
+stage {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+}
+.subject {
+	margin: 30px 20px;
+	box-sizing: border-box;
+}
+
+.paper{
+	border: 1px solid gray;
+}
+
+.margin{
+	background-color: LightSalmon;
+	width: 100%;
+	height:100%;
+}
+.margin:hover{
+	background-color: Salmon;
+}
+</style> 
+
+<!-- 메인 시작 -->
+<stage>
+	<form>
+		<label>
+			selected :
+			<input type="text" name="selected" value="">
+		</label>
+		<button type="button" onclick="addChild()" >addChild</button>
+	</form>
+	<form>
+		<label>
+			atrribute :
+			<input type="text" name="attribute">
+		</label>
+		<label>
+			value :
+			<input type="text" name="value">
+		</label>
+		<button type="button" onclick="magicTool()" >attachment</button>
+	</form>
+	<div id="001" class="subject paper" style="width:120px;height:100px;padding:10px 10px 10px 10px;">
+		<div id="001" class="margin">
+			
+		</div>
+	</div>
+</stage>
+<!-- 메인 끝 -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/interact.js/1.2.8/interact.min.js"></script>
+<script>
+interact('.paper')
+	.draggable({
+		inertia: true,
+		restrict: {
+			restriction: "parent",
+			endOnly: true,
+			elementRect: { top: 0, left: 0, bottom: 1, right: 1 }
+		},
+		autoScroll: true,
+		onstart: function (event) {
+			console.log('onstart');
+		},
+		onmove: function dragMoveListener (event) {
+			console.log('dragMoveListener');
+			var target = event.target,
+				// keep the dragged position in the data-x/data-y attributes
+				x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx,
+				y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy;
+			// translate the element
+			target.style.webkitTransform =
+				target.style.transform =
+					'translate(' + x + 'px, ' + y + 'px)';
+			// update the position attributes
+			target.setAttribute('data-x', x);
+			target.setAttribute('data-y', y);
+		},
+		onend: function (event) {
+			console.log('onend' + (Math.sqrt(event.dx * event.dx + event.dy * event.dy)|0) + 'px');
+		}
+	})
+	.resizable({
+		edges: { left: true, right: true, bottom: true, top: true },
+		restrictEdges: {
+			outer: 'parent',
+			endOnly: true,
+		},
+		restrictSize: {
+			min: { width: 100, height: 50 },
+		},
+		inertia: true,
+	})
+	.on('resizemove', function (event) {
+		var target = event.target,
+			x = (parseFloat(target.getAttribute('data-x')) || 0),
+			y = (parseFloat(target.getAttribute('data-y')) || 0);
+
+		// update the element's style
+		target.style.width  = event.rect.width + 'px';
+		target.style.height = event.rect.height + 'px';
+
+		// translate when resizing from top or left edges
+		x += event.deltaRect.left;
+		y += event.deltaRect.top;
+
+		target.style.webkitTransform = target.style.transform ='translate(' + x + 'px,' + y + 'px)';
+
+		target.setAttribute('data-x', x);
+		target.setAttribute('data-y', y);
+		//target.textContent = Math.round(event.rect.width) + '\u00D7' + Math.round(event.rect.height);
+	  });
+interact('.margin')
+	.resizable({
+		edges: { left: true, right: true, bottom: true, top: true },
+		restrictEdges: {
+			outer: 'parent',
+			endOnly: false,
+		},
+		restrictSize: {
+			min: { width: 100, height: 50 },
+		},
+		inertia: true,
+	})
+	.on('resizemove', function (event) {
+		var target = event.target,
+			parent = target.parentNode,
+			paddingLeft = (parseFloat(parent.style.paddingLeft.slice(0, -2)) || 0 ),
+			paddingRight = (parseFloat(parent.style.paddingRight.slice(0, -2)) || 0 ),
+			paddingTop = (parseFloat(parent.style.paddingTop.slice(0, -2)) || 0 ),
+			paddingBottom = (parseFloat(parent.style.paddingBottom.slice(0, -2)) || 0 );
+		
+		// translate when resizing from top or left edges
+		paddingLeft += event.deltaRect.left;
+		paddingRight -= event.deltaRect.right;
+		paddingTop += event.deltaRect.top;
+		paddingBottom -= event.deltaRect.bottom;
+
+		// update the element's style
+		parent.style.paddingLeft = paddingLeft + 'px';
+		parent.style.paddingRight = paddingRight + 'px';
+		parent.style.paddingTop = paddingTop + 'px';
+		parent.style.paddingBottom = paddingBottom + 'px';
+	  });
+
+</script>
+ 
+<script>
+
+var index=1;
+function selectable(selector){
+	$( selector ).click( function () {
+		$('label input[type=text][name=selected]').val( selector );
+	});
+}
+selectable('#001');
+
+function addChild(){
+	let selector = $('label input[type=text][name=selected]').val();
+	$( selector + ' .margin' ).append('<div id="' + ++index + '">dfs</div>');
+	//$( selector + ' .margin' ).append('<div id="'+ ++index +'" class="subject paper" style="width:120px;height:100px;padding:10px 10px 10px 10px;"><div id="001" class="margin"></div></div>');
+	selectable( '#' + index );
+}
+
+function magicTool(){
+	let attr = $('label input[type=text][name=attribute]').val();
+	let value = $('label input[type=text][name=value]').val();
+	console.log( attr + value);
+	$('.subject').css( attr, value );
+}
+</script>
+
+<?php
+include('./tail.php');
+?>
