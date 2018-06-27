@@ -7,10 +7,32 @@ if (isset($_REQUEST['roplo_id'])) {
 } else {
     $roplo_id = '';
 }
+if (isset($_REQUEST['profile_id'])){
+	$profile_id=$_REQUEST['profile_id'];
+} else {
+	$profile_id = '';
+}
 
-if ($roplo_id){
+if ( $roplo_id ){
 	$roplo = sql_fetch(" select * from {$table_roplo} where id = '{$roplo_id}' ");
 }
+
+if ( $profile_id ){
+	$profile = sql_fetch("select * from {$table_profile} where id={$profile_id}");
+}
+
+// roplo 집필자인지 확인
+$is_roplomu = false;
+if ($member['mb_id']) {
+    $is_roplomu = sql_fetch(" select * from {$table_profile} where roplo_id = '{$roplo_id}' and member_id = '{$member['mb_id']}' ");
+}
+
+// 집필자 목록
+if ($roplo){	
+	$roplo['profiles'] = sql_fetch(" select * from {$table_profile} where roplo_id = '{$roplo_id}'");
+	$roplo['profile'] = sql_fetch(" select * from {$table_profile} where roplo_id = '{$roplo_id}' and member_id='{$member['mb_id']}'");
+}
+
 	$roplo['pages'] = Array();
 		$roplo['pages'][0] = Array();
 			$roplo['pages'][0]['writer'] = 'John Doe';
