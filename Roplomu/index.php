@@ -2,6 +2,7 @@
 include('./common.php');
 include('./head.php');
 include('./header.php');
+
 ?>
 <!-- 메인 시작 -->
 <main>

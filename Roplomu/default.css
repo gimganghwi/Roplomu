@@ -30,14 +30,15 @@ footer{
     padding: 0px;
 }
 
-.roplo_timeline li{
+.roplo_timeline li, .roplo_timeline_li{
     display: inline-block;
     vertical-align: top;
 	overflow: hidden;
 }
-.roplo_timeline li.default {
+.roplo_timeline li.default .roplo_timeline_li{
 	padding: 6px;
 	margin: 0px;
+	width: 14.28%;
     border: 1px dotted Darkgray;
 	box-sizing: border-box;
 }
