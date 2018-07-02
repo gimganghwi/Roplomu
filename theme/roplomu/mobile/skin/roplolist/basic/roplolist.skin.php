@@ -9,17 +9,37 @@ add_stylesheet('<link rel="stylesheet" href="'.$roplolist_skin_url.'/style.css">
     <ul>
         <!--
     <?php for ($i=0; $i<count($list); $i++) { ?>
-        --><li>
-            <a href="<?php echo $roplomu_url."/?roplo_id=".$list[$i]['roplo_id'] ?>" class="roli_tit">
-                <img class="roli_thumbnail" src="./color.png"/>
+        --><li class="roli_li">
+            <!-- 앱 아이콘 시작 -->
+            <a href="<?php echo $r_url['roplo']."/?roplo_id=".$list[$i]['roplo_id'] ?>" >
+                <div class="roli_thumbnail">
+                    <img src="./color.png"/>                
+                </div>
+                <div class="roli_tit">
+                    <?php echo $list[$i]['title']; ?>
+                </div>
+                <div class="roli_info">
+                    <?php echo $list[$i]['name'] ? $list[$i]['name'] : "프로필 없음" ?>
+                </div>
             </a>
-            <?php echo $list[$i]['title']; ?>
-            <div class="roli_info">
-                <?php echo $list[$i]['name'] ? $list[$i]['name'] : "프로필 없음" ?>
-            </div>
+            <!-- 앱 아이콘 끝 -->
         </li><!--
     <?php } ?>
-    -->
+     --><li class="roli_li explore">
+            <!-- 검색 앱 아이콘 시작 -->
+            <a href="<?php echo $r_url['explore'] ?>" class="explore">
+                <div class="roli_thumbnail explore ">
+                    <i class='fas fa-search-plus'></i>
+                </div>
+                <div class="roli_tit">
+                    새로운 roplo
+                </div>
+                <div class="roli_info">
+                    다른 roplo를 둘러보세요.
+                </div>
+            </a>
+            <!-- 검색 앱 아이콘 끝  -->
+        </li>
     <?php if (count($list) == 0) { //게시물이 없을 때 ?>
     <li class="empty_li">게시물이 없습니다.</li>
     <?php } ?>

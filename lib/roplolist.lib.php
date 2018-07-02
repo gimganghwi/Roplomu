@@ -1,9 +1,9 @@
 <?php
 //if (!defined('_CONFIGCONSTANT_')) exit;
 
-function roplolist($skin_dir='', $title_len=40, $cache_time=1, $options='')
+function roplolist($skin_dir='', $cache_time=1, $options='')
 {
-    global $roplomu_url;
+    global $r_url;
     global $table_profile;
     global $table_roplo;
     global $member;
@@ -33,7 +33,7 @@ function roplolist($skin_dir='', $title_len=40, $cache_time=1, $options='')
 
     $cache_fwrite = true;//false;
     if(G5_USE_CACHE) {
-        $cache_file = G5_DATA_PATH."/cache/roplolist-{$md_id}-serial.php";
+        $cache_file = G5_DATA_PATH."/cache/roplolist-{$member['md_id']}-serial.php";
 
         if(!file_exists($cache_file)) {
             $cache_fwrite = true;
