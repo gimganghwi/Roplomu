@@ -1,5 +1,5 @@
 <?php 
-include('./config.php');
+include('./common.php');
 
 // 세션 확인
 if (get_session('ss_check_mb_id') != $mb_id ) {
@@ -24,9 +24,12 @@ if ($w == '') {
 	// 에러 확인 끝
 
 	// 로고 이미지 처리
+	// To-Do : 로고 이미지 검증(이미지 용량, 이미지 형식), 이미지 리사이징
 	$logo_ext = array_pop(explode(".", strtolower($_FILES['logofile']['name'])));
-	$logourl = $logoimgs_data_url.$roplo_id.$logo_ext;
-	move_uploaded_file($_FILES['logofile']['tmp_name'], $logourl);
+	$logourl = $logoimgs_data_url.'/'.$roplo_id.".".$logo_ext;
+	if (! move_uploaded_file($_FILES['logofile']['tmp_name'], $logourl)){
+		alert("이미지 업로드 실패");
+	};
 
 	// 튜풀 삽입 
 	$sql = "insert into {$table_roplo}
@@ -47,7 +50,7 @@ if ($w == '') {
 	if ($logourl_updated){
 		// 로고 이미지 처리
 		$logo_ext = array_pop(explode(".", strtolower($_FILES['logofile']['name'])));
-		$logourl = $logoimgs_data_url.$roplo_id.$logo_ext;
+		$logourl = $logoimgs_data_url.'/'.$roplo_id.$logo_ext;
 		move_uploaded_file($_FILES['logofile']['tmp_name'], $logourl);
 	}
 
