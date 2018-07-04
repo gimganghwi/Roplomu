@@ -5,7 +5,7 @@ if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 add_stylesheet('<link rel="stylesheet" href="'.$roplomu_skin_url.'/style.css">', 0);
 ?>
 	<script type="text/javascript" src="<?php echo G5_JS_URL?>/jquery.uploadPreview.min.js"></script>
-	<form enctype="multipart/form-data" method="post" action="create_roplo_update.php">
+	<form id="create_roplo_form" enctype="multipart/form-data" method="post" action="create_roplo_update.php">
 		<fieldset>
 			<legend>기본 정보</legend>
 			<input type="hidden" name="w" value="<?php echo $w ?>">
@@ -83,8 +83,11 @@ add_stylesheet('<link rel="stylesheet" href="'.$roplomu_skin_url.'/style.css">',
 		</div>
 		
 	</form>
+	<script src="<?php echo G5_JS_URL?>/jquery.form.min.js"></script>
 	<script type="text/javascript">
 		$(document).ready(function() {
+
+			// uploadPreview.js
 			$.uploadPreview({
 				input_field: ".logo.img-upload",   // Default: .image-upload
 				preview_box: ".logo.img-preview",  // Default: .image-preview
@@ -95,9 +98,17 @@ add_stylesheet('<link rel="stylesheet" href="'.$roplomu_skin_url.'/style.css">',
 			for (var i = 0 ; i < 5; i++) {
 				BoardToggle(i);
 			}
-			
+
+			// 폼을 페이지 이동 없이 AJAX로 POST할 수 있도록 처리
+			$('#create_roplo_form').ajaxForm({
+				url: 'create_roplo_update_ajax.php',
+				success: function (json) {
+					alert(JSON.parse(json).msg);
+				}
+			});
 		});
 
+		// 게시판 개별 정보 부분이 길고 반복되기 때문에, 접을 수 있도록 함.
 		function BoardToggle(index){
 			let button = "div.board_toggle_wrapper[index='"+index+"'] > .board_toggle_button";
 			let panel = "div.board_toggle_wrapper[index='"+index+"'] > .board_toggle_panel";
