@@ -12,22 +12,22 @@ function roploexplore($skin_dir='', $cache_time=1, $options='')
 
     if(preg_match('#^theme/(.+)$#', $skin_dir, $match)) {
         if (G5_IS_MOBILE) {
-            $roploexplore_skin_path = G5_THEME_MOBILE_PATH.'/'.G5_SKIN_DIR.'/roploexplore/'.$match[1];
-            if(!is_dir($roploexplore_skin_path))
-                $roploexplore_skin_path = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/roploexplore/'.$match[1];
-            $roploexplore_skin_url = str_replace(G5_PATH, G5_URL, $roploexplore_skin_path);
+            $roplomu_skin_path = G5_THEME_MOBILE_PATH.'/'.G5_SKIN_DIR.'/roplomu/'.$match[1];
+            if(!is_dir($roplomu_skin_path))
+                $roplomu_skin_path = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/roplomu/'.$match[1];
+            $roplomu_skin_url = str_replace(G5_PATH, G5_URL, $roplomu_skin_path);
         } else {
-            $roploexplore_skin_path = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/roploexplore/'.$match[1];
-            $roploexplore_skin_url = str_replace(G5_PATH, G5_URL, $roploexplore_skin_path);
+            $roplomu_skin_path = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/roplomu/'.$match[1];
+            $roplomu_skin_url = str_replace(G5_PATH, G5_URL, $roplomu_skin_path);
         }
         $skin_dir = $match[1];
     } else {
         if(G5_IS_MOBILE) {
-            $roploexplore_skin_path = G5_MOBILE_PATH.'/'.G5_SKIN_DIR.'/roploexplore/'.$skin_dir;
-            $roploexplore_skin_url  = G5_MOBILE_URL.'/'.G5_SKIN_DIR.'/roploexplore/'.$skin_dir;
+            $roplomu_skin_path = G5_MOBILE_PATH.'/'.G5_SKIN_DIR.'/roplomu/'.$skin_dir;
+            $roplomu_skin_url  = G5_MOBILE_URL.'/'.G5_SKIN_DIR.'/roplomu/'.$skin_dir;
         } else {
-            $roploexplore_skin_path = G5_SKIN_PATH.'/roploexplore/'.$skin_dir;
-            $roploexplore_skin_url  = G5_SKIN_URL.'/roploexplore/'.$skin_dir;
+            $roplomu_skin_path = G5_SKIN_PATH.'/roplomu/'.$skin_dir;
+            $roplomu_skin_url  = G5_SKIN_URL.'/roplomu/'.$skin_dir;
         }
     }
 
@@ -87,7 +87,7 @@ function roploexplore($skin_dir='', $cache_time=1, $options='')
     }
 
     ob_start();
-    include $roploexplore_skin_path.'/roploexplore.skin.php';
+    include $roplomu_skin_path.'/explore.skin.php';
     $content = ob_get_contents();
     ob_end_clean();
 

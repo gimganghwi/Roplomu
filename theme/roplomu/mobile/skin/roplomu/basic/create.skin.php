@@ -2,7 +2,7 @@
 if (!defined('_GNUBOARD_')) exit; // 개별 페이지 접근 불가
 
 // add_stylesheet('css 구문', 출력순서); 숫자가 작을 수록 먼저 출력됨
-add_stylesheet('<link rel="stylesheet" href="'.$roplocreate_skin_url.'/style.css">', 0);
+add_stylesheet('<link rel="stylesheet" href="'.$roplomu_skin_url.'/style.css">', 0);
 ?>
 	<script type="text/javascript" src="<?php echo G5_JS_URL?>/jquery.uploadPreview.min.js"></script>
 	<form enctype="multipart/form-data" method="post" action="create_roplo_update.php">

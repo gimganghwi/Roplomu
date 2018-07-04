@@ -15,22 +15,22 @@ function roplocreate($skin_dir='')
 
     if(preg_match('#^theme/(.+)$#', $skin_dir, $match)) {
         if (G5_IS_MOBILE) {
-            $roplocreate_skin_path = G5_THEME_MOBILE_PATH.'/'.G5_SKIN_DIR.'/roplocreate/'.$match[1];
-            if(!is_dir($roplocreate_skin_path))
-                $roplocreate_skin_path = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/roplocreate/'.$match[1];
-            $roplocreate_skin_url = str_replace(G5_PATH, G5_URL, $roplocreate_skin_path);
+            $roplomu_skin_path = G5_THEME_MOBILE_PATH.'/'.G5_SKIN_DIR.'/roplomu/'.$match[1];
+            if(!is_dir($roplomu_skin_path))
+                $roplomu_skin_path = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/roplomu/'.$match[1];
+            $roplomu_skin_url = str_replace(G5_PATH, G5_URL, $roplomu_skin_path);
         } else {
-            $roplocreate_skin_path = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/roplocreate/'.$match[1];
-            $roplocreate_skin_url = str_replace(G5_PATH, G5_URL, $roplocreate_skin_path);
+            $roplomu_skin_path = G5_THEME_PATH.'/'.G5_SKIN_DIR.'/roplomu/'.$match[1];
+            $roplomu_skin_url = str_replace(G5_PATH, G5_URL, $roplomu_skin_path);
         }
         $skin_dir = $match[1];
     } else {
         if(G5_IS_MOBILE) {
-            $roplocreate_skin_path = G5_MOBILE_PATH.'/'.G5_SKIN_DIR.'/roplocreate/'.$skin_dir;
-            $roplocreate_skin_url  = G5_MOBILE_URL.'/'.G5_SKIN_DIR.'/roplocreate/'.$skin_dir;
+            $roplomu_skin_path = G5_MOBILE_PATH.'/'.G5_SKIN_DIR.'/roplomu/'.$skin_dir;
+            $roplomu_skin_url  = G5_MOBILE_URL.'/'.G5_SKIN_DIR.'/roplomu/'.$skin_dir;
         } else {
-            $roplocreate_skin_path = G5_SKIN_PATH.'/roplocreate/'.$skin_dir;
-            $roplocreate_skin_url  = G5_SKIN_URL.'/roplocreate/'.$skin_dir;
+            $roplomu_skin_path = G5_SKIN_PATH.'/roplomu/'.$skin_dir;
+            $roplomu_skin_url  = G5_SKIN_URL.'/roplomu/'.$skin_dir;
         }
     }
 
@@ -57,7 +57,7 @@ function roplocreate($skin_dir='')
 	$g5['title'] = $title;
 
     ob_start();
-    include $roplocreate_skin_path.'/roplocreate.skin.php';
+    include $roplomu_skin_path.'/create.skin.php';
     $content = ob_get_contents();
     ob_end_clean();
 
