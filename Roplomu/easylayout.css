@@ -1,0 +1,80 @@
+/* 초기화 코드 */
+html {overflow-y:scroll}
+body {margin:0;padding:0;}
+html, h1, h2, h3, h4, h5, h6, form, fieldset, img {margin:0;padding:0;border:0}
+h1, h2, h3, h4, h5, h6 {font-size:1em}
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block}
+
+/* 디버깅용 임시 코드(영역 구분을 위한 색깔놀이) */
+header{
+	background: gold;
+}
+
+main{
+	background: yellow;
+}
+footer{
+	background: darkgold;
+}
+aside.left{background: pink;}
+aside.left.outter{background:salmon;}
+aside.right{background:GreenYellow;}
+aside.right.outter{background:LawnGreen;}
+aside.up{background: pink;}
+aside.up.outter{background:salmon;}
+aside.down{background:GreenYellow;}
+aside.down.outter{background:LawnGreen;}
+aside.overlay{background:Gray; opacity: 0.5;}
+
+/* 레이아웃 코드 */
+body{
+	width: 100vw;
+	height: 100vh;
+	overflow-y: hidden; /* 스크롤 하지 못하게 막음*/
+	display: flex;
+}
+section.column-wrapper{
+	display: flex;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	flex:1;
+}
+section.row-wrapper{
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	overflow-y: none;
+	flex:1;
+}
+aside{
+	flex : none;
+}
+aside.overlay{
+	position: absolute;
+	display: none;
+}
+aside.left.overlay{
+	height: 100vh;
+	left: 0;
+}
+aside.right.overlay{
+	height: 100vh;
+	right: 0;
+}
+aside.top.overlay{
+	width: 100vw;
+	top:0;
+}
+aside.bottom.overlay{
+	width: 100vw;
+	bottom: 0;
+}
+#main-wrapper{
+	display: block;
+	overflow-y: scroll;
+	flex: 1;
+}
+
+#aside-overlay-left:target{
+	display: block;
+}
