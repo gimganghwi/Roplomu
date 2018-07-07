@@ -4,6 +4,7 @@ body {margin:0;padding:0;}
 html, h1, h2, h3, h4, h5, h6, form, fieldset, img {margin:0;padding:0;border:0}
 h1, h2, h3, h4, h5, h6 {font-size:1em}
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block}
+a{text-decoration: none};
 
 /* 디버깅용 임시 코드(영역 구분을 위한 색깔놀이) */
 header{
@@ -20,61 +21,144 @@ aside.left{background: pink;}
 aside.left.outter{background:salmon;}
 aside.right{background:GreenYellow;}
 aside.right.outter{background:LawnGreen;}
-aside.up{background: pink;}
-aside.up.outter{background:salmon;}
+aside.top{background: pink;}
+aside.top.outter{background:salmon;}
 aside.down{background:GreenYellow;}
 aside.down.outter{background:LawnGreen;}
-aside.overlay{background:Gray; opacity: 0.5;}
+aside.overlay{background:Gray;}
 
-/* 레이아웃 코드 */
-body{
+/* 레이아웃 코드(필수코드) */
+body.roplo-viewport, .roplo-viewport{
 	width: 100vw;
 	height: 100vh;
 	overflow-y: hidden; /* 스크롤 하지 못하게 막음*/
 	display: flex;
 }
-section.column-wrapper{
+.roplo-viewport section.full{
 	display: flex;
-	flex-direction: column;
 	flex-wrap: nowrap;
 	flex:1;
 }
-section.row-wrapper{
-	display: flex;
-	flex-direction: row;
-	flex-wrap: nowrap;
-	overflow-y: none;
-	flex:1;
-}
-aside{
+.roplo-viewport section.full.row{ overflow-y: none; flex-direction: row}
+.roplo-viewport section.full.column{ overflow-x: none; flex-direction: column}
+
+.roplo-viewport aside{
 	flex : none;
+	box-sizing: border-box;
+	padding:0;
 }
-aside.overlay{
-	position: absolute;
-	display: none;
+.roplo-viewport aside.overlay{ position: absolute; }
+.roplo-viewport aside.left.overlay{	height: 100%; width: var(--length);	left: 0;}
+.roplo-viewport aside.right.overlay{ height: 100vh; width: var(--length); right: 0;}
+.roplo-viewport aside.top.overlay{ width: 100vw; height: var(--length);	top: 0;}
+.roplo-viewport aside.bottom.push{ width: 100vw;	height: var(--length); bottom: 0;}
+.roplo-viewport aside.left.push{	height: 100%; width: var(--length);	left: 0;}
+.roplo-viewport aside.right.push{ height: 100vh; width: var(--length); right: 0;}
+.roplo-viewport aside.top.push{ width: 100vw; height: var(--length);	top: 0;}
+.roplo-viewport aside.bottom.push{ width: 100vw;	height: var(--length); bottom: 0;}
+
+/* 콘텐츠 코드(이 코드가 없다면 콘텐츠가 비정상적으로 깨짐==필수코드?)*/
+/* 필요할 때 일부러 깨고 사용할 수 있을듯!*/
+/* 레이아웃의 자식 요소가 흘러넘치지 않는 것을 기본으로 설정 */
+.roplo-viewport aside.left.overlay > * { max-width: var(--length);	}
+.roplo-viewport aside.right.overlay > * { max-width: var(--length); }
+.roplo-viewport aside.top.overlay > * { max-height: var(--length);	}
+.roplo-viewport aside.bottom.push > * { max-height: var(--length); }
+.roplo-viewport aside.left.push > * { max-width: var(--length);	}
+.roplo-viewport aside.right.push > * { max-width: var(--length); }
+.roplo-viewport aside.top.push > * { max-height: var(--length);	}
+.roplo-viewport aside.bottom.push > * { max-height: var(--length); }
+
+.roplo-viewport .logo{
+	display: inline-block;
+	/* 로고가 구겨지지않음 */
+	object-fit: scale-down;
 }
-aside.left.overlay{
-	height: 100vh;
-	left: 0;
-}
-aside.right.overlay{
-	height: 100vh;
-	right: 0;
-}
-aside.top.overlay{
-	width: 100vw;
-	top:0;
-}
-aside.bottom.overlay{
-	width: 100vw;
-	bottom: 0;
-}
-#main-wrapper{
-	display: block;
-	overflow-y: scroll;
-	flex: 1;
+.roplo-viewport .aside-button { 
+	display: inline-block;
+	/* 버튼 크기를 너무 작게 하는 것을 금지한다.*/
+	min-height: 30px;
+	min-width: 30px;
+	/* 버튼 내용물은 기본적으로 가운데정렬*/
+	text-align: center;
+	vertical-align: middle;
 }
 
-#aside-overlay-left:target{
-	display: block;
+/* 덜 중요한 코드(테마코드 테마에 따라 바뀔 수 있음) */
+/* 1. 상단바 */
+.roplo-viewport aside.push.top{		
+	display: flex;
+	/* 상단바 내용은 중앙정렬 */
+	align-items: center;
+	justify-content: space-between;
+	/* 상단바는 싱글 로우로 구성*/
+	flex-wrap: nowrap;
+	/* 디자인 요소라서 아래로 빼야할듯ㅠ*/
+	padding: 5px;
+}
+
+.roplo-viewport aside.push.top .aside-button { flex: none; } /* 버튼은 상단바 안에서 늘어나지 않게 함 */
+.roplo-viewport aside.push.top .logo-small{ flex:1;	} /* 로고는 상단바 남은 영역을 차지함 */
+
+/* 2.좌측 창*/
+.roplo-viewport aside.overlay.left{
+	justify-content: space-between;
+	flex-direction: column;
+}
+.roplo-viewport aside.overlay.left .logo-big{ flex:none; } /* 로고는 최소 높이를 가짐 */
+.roplo-viewport #paper_outter_navigation { flex:1; } /* 남은 영역 차지 */
+
+/* 3.토글기능 정의. 그냥 사라졌다 나왔다 하는걸로했음 애니메이션 없이*/
+.roplo-viewport #aside-overlay-left{
+	display: none;
+}
+.roplo-viewport #aside-overlay-left:target{
+	display: flex;
+}
+
+/* 더 덜 중요한 코드 (사용자가 폼으로 수정하는 코드 )*/
+/* 1. 상단바의 버튼 꾸미기*/
+.roplo-viewport .aside-button {
+    font-family: FontAwesome;
+	font-size: 30px;
+	color:white;
+}
+.roplo-viewport #aside-overlay-left-button::after {
+	content:"\f0c9";
+}
+.roplo-viewport #aside-overlay-right-button::after {
+	content:"\f004";
+}
+.roplo-viewport #none-button::after{
+	content:"\f00d";
+}
+
+/* 2. 페이퍼  꾸미기 놀이*/
+.roplo-viewport .wrapper{
+	flex:1;
+	border: 4px solid transparent;
+    border-image: url(http://doge.dothome.co.kr/data/roplomu/roplo/andsocks/paper_outter_navigation.gif) 10 round;
+	background: rgba(0, 0, 0, 0.7);
+	color:white;
+}
+
+/* 2.5색깔놀이*/
+.roplo-viewport aside.push.top{
+	background: pink;
+}
+.roplo-viewport aside.overlay{
+	background: rgba(0, 0, 0, 0.7);
+}
+
+/* 3. 네비게이션 꾸미기 놀이 */
+.roplo-viewport #none-button{
+	align-self: flex-end;
+}
+.roplo-viewport #aside-overlay-left{
+	padding: 0em 0.7em 2em 0.7em;
+}
+.roplo-viewport .light_transparent_text{
+	color : gray;
+	margin: 2em 0em 0em 2em;
+	font-size: 0.5em;
 }
