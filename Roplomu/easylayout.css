@@ -28,11 +28,12 @@ aside.down.outter{background:LawnGreen;}
 aside.overlay{background:Gray;}
 
 /* 레이아웃 코드(필수코드) */
-body.roplo-viewport, .roplo-viewport{
+.roplo-viewport{
 	width: 100vw;
 	height: 100vh;
 	overflow-y: hidden; /* 스크롤 하지 못하게 막음*/
 	display: flex;
+	position: relative;
 }
 .roplo-viewport section.full{
 	display: flex;
@@ -54,7 +55,7 @@ body.roplo-viewport, .roplo-viewport{
 .roplo-viewport aside.bottom.push{ width: 100vw;	height: var(--length); bottom: 0;}
 .roplo-viewport aside.left.push{	height: 100%; width: var(--length);	left: 0;}
 .roplo-viewport aside.right.push{ height: 100vh; width: var(--length); right: 0;}
-.roplo-viewport aside.top.push{ width: 100vw; height: var(--length);	top: 0;}
+.roplo-viewport aside.top.push{ width: 100%; height: var(--length);	top: 0;}
 .roplo-viewport aside.bottom.push{ width: 100vw;	height: var(--length); bottom: 0;}
 
 /* 콘텐츠 코드(이 코드가 없다면 콘텐츠가 비정상적으로 깨짐==필수코드?)*/

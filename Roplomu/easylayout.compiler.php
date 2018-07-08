@@ -7,6 +7,16 @@ include('./common.php');
 
 include('./easylayout.data.php');
 
+// 흠...
+$roplo_id = 'andsocks';
+
+if ( $easylayout_editor ){
+	foreach ($layout as $type => $el){
+		$subtype = 'LAYOUT';
+		$layout[$type]['tag']['start'] = str_replace( 'id=', 'data-type="'.$type.'" data-subtype="'.$subtype.'" id=', $layout[$type]['tag']['start'] );
+	}
+}
+
 function BOARD ( $arg ){ return  '<main></main>';}
 function LOGOSMALL ( $arg ){ global $roplo_id; return  "<img class='logo-small logo' src='".G5_DATA_URL."/roplomu/roplo/".$roplo_id."/logo-small.png'>";}
 function LOGOBIG ( $arg ){ global $roplo_id; return  "<img class='logo-big logo' src='".G5_DATA_URL."/roplomu/roplo/".$roplo_id."/logo-big.png'>";}
@@ -77,4 +87,5 @@ function easylayout($json){
 	$style=json_decode( $json, true);
 	return style2html( $style );
 }
+
 ?>
