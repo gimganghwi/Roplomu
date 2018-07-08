@@ -57,6 +57,11 @@ if ($w == '') {
 			admin_id = '{$admin_id}',
 			logourl = '{$logourl}'";
 	sql_fetch($sql);
+	// 가입
+	$sql = "insert into {$r_table['profile']}
+			set member_id = '{$admin_id}',
+			roplo_id = '{$roplo_id}'";
+	sql_fetch($sql);
 
 	echo_json('생성 완료!');
 
