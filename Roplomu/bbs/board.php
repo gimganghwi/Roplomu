@@ -30,7 +30,7 @@ if (isset($wr_id) && $wr_id) {
     if (isset($group['gr_use_access']) && $group['gr_use_access']) {
         if ($is_guest) {
             $msg = "비회원은 이 게시판에 접근할 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.";
-            alert($msg, './login.php?wr_id='.$wr_id.$qstr.'&amp;url='.urlencode(G5_BBS_URL.'/board.php?bo_table='.$bo_table.'&amp;wr_id='.$wr_id.$qstr));
+            alert($msg, './login.php?wr_id='.$wr_id.$qstr.'&amp;url='.urlencode(BBS_URL.'/board.php?bo_table='.$bo_table.'&amp;wr_id='.$wr_id.$qstr));
         }
 
         // 그룹관리자 이상이라면 통과
@@ -51,14 +51,14 @@ if (isset($wr_id) && $wr_id) {
         if ($is_member)
             alert('글을 읽을 권한이 없습니다.', G5_URL);
         else
-            alert('글을 읽을 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.', './login.php?wr_id='.$wr_id.$qstr.'&amp;url='.urlencode(G5_BBS_URL.'/board.php?bo_table='.$bo_table.'&amp;wr_id='.$wr_id.$qstr));
+            alert('글을 읽을 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.', './login.php?wr_id='.$wr_id.$qstr.'&amp;url='.urlencode(BBS_URL.'/board.php?bo_table='.$bo_table.'&amp;wr_id='.$wr_id.$qstr));
     }
 
     // 본인확인을 사용한다면
     if ($config['cf_cert_use'] && !$is_admin) {
         // 인증된 회원만 가능
         if ($board['bo_use_cert'] != '' && $is_guest) {
-            alert('이 게시판은 본인확인 하신 회원님만 글읽기가 가능합니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.', './login.php?wr_id='.$wr_id.$qstr.'&amp;url='.urlencode(G5_BBS_URL.'/board.php?bo_table='.$bo_table.'&amp;wr_id='.$wr_id.$qstr));
+            alert('이 게시판은 본인확인 하신 회원님만 글읽기가 가능합니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.', './login.php?wr_id='.$wr_id.$qstr.'&amp;url='.urlencode(BBS_URL.'/board.php?bo_table='.$bo_table.'&amp;wr_id='.$wr_id.$qstr));
         }
 
         if ($board['bo_use_cert'] == 'cert' && !$member['mb_certify']) {
@@ -144,14 +144,14 @@ if (isset($wr_id) && $wr_id) {
         if ($member['mb_id'])
             alert('목록을 볼 권한이 없습니다.', G5_URL);
         else
-            alert('목록을 볼 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.', './login.php?'.$qstr.'&url='.urlencode(G5_BBS_URL.'/board.php?bo_table='.$bo_table.($qstr?'&amp;':'')));
+            alert('목록을 볼 권한이 없습니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.', './login.php?'.$qstr.'&url='.urlencode(BBS_URL.'/board.php?bo_table='.$bo_table.($qstr?'&amp;':'')));
     }
 
     // 본인확인을 사용한다면
     if ($config['cf_cert_use'] && !$is_admin) {
         // 인증된 회원만 가능
         if ($board['bo_use_cert'] != '' && $is_guest) {
-            alert('이 게시판은 본인확인 하신 회원님만 글읽기가 가능합니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.', './login.php?wr_id='.$wr_id.$qstr.'&amp;url='.urlencode(G5_BBS_URL.'/board.php?bo_table='.$bo_table.'&amp;wr_id='.$wr_id.$qstr));
+            alert('이 게시판은 본인확인 하신 회원님만 글읽기가 가능합니다.\\n\\n회원이시라면 로그인 후 이용해 보십시오.', './login.php?wr_id='.$wr_id.$qstr.'&amp;url='.urlencode(BBS_URL.'/board.php?bo_table='.$bo_table.'&amp;wr_id='.$wr_id.$qstr));
         }
 
         if ($board['bo_use_cert'] == 'cert' && !$member['mb_certify']) {
@@ -176,7 +176,7 @@ if (isset($wr_id) && $wr_id) {
     $g5['title'] = $g5['board_title'].' '.$page.' 페이지';
 }
 
-include_once(G5_PATH.'/head.sub.php');
+include_once(ROPLOMU_PATH.'/head.php');
 
 $width = $board['bo_table_width'];
 if ($width <= 100)
@@ -224,21 +224,21 @@ $admin_href = "";
 if ($member['mb_id'] && ($is_admin === 'super' || $group['gr_admin'] === $member['mb_id']))
     $admin_href = G5_ADMIN_URL.'/board_form.php?w=u&amp;bo_table='.$bo_table;
 
-include_once(G5_BBS_PATH.'/board_head.php');
+include_once(ROPLOMU_PATH.'/header.php');
 
 // 게시물 아이디가 있다면 게시물 보기를 INCLUDE
 if (isset($wr_id) && $wr_id) {
-    include_once(G5_BBS_PATH.'/view.php');
+    include_once(BBS_PATH.'/view.php');
 }
 
 // 전체목록보이기 사용이 "예" 또는 wr_id 값이 없다면 목록을 보임
 //if ($board['bo_use_list_view'] || empty($wr_id))
 if ($member['mb_level'] >= $board['bo_list_level'] && $board['bo_use_list_view'] || empty($wr_id))
-    include_once (G5_BBS_PATH.'/list.php');
+    include_once (BBS_PATH.'/list.php');
 
-include_once(G5_BBS_PATH.'/board_tail.php');
+include_once(ROPLOMU_PATH.'/footer.php');
 
 echo "\n<!-- 사용스킨 : ".(G5_IS_MOBILE ? $board['bo_mobile_skin'] : $board['bo_skin'])." -->\n";
 
-include_once(G5_PATH.'/tail.sub.php');
+include_once(ROPLOMU_PATH.'/tail.php');
 ?>

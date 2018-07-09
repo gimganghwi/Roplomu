@@ -172,6 +172,7 @@ if ($is_search_bbs) {
     $sql = " select * from {$write_table} where wr_is_comment = 0 ";
     if(!empty($notice_array))
         $sql .= " and wr_id not in (".implode(', ', $notice_array).") ";
+    $sql .= " and ({$wr_roplo}='{$roplo_id}')";
     $sql .= " {$sql_order} limit {$from_record}, $page_rows ";
 }
 
