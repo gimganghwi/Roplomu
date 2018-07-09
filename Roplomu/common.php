@@ -1,11 +1,10 @@
 <?php
-include('./config.php');
 
 if (isset($_REQUEST['roplo_id'])) {
-    $roplo_id = preg_replace('/[^a-z0-9_]/i', '', trim($_REQUEST['roplo_id']));
-    $roplo_id = substr($roplo_id, 0, 20);
+	$roplo_id = preg_replace('/[^a-z0-9_]/i', '', trim($_REQUEST['roplo_id']));
+	$roplo_id = substr($roplo_id, 0, 20);
 } else {
-    $roplo_id = '';
+	$roplo_id = '';
 }
 if (isset($_REQUEST['profile_id'])){
 	$profile_id=$_REQUEST['profile_id'];
@@ -24,12 +23,16 @@ if ( $profile_id ){
 // roplo 집필자인지 확인
 $is_roplomu = false;
 if ($member['mb_id']) {
-    $is_roplomu = sql_fetch(" select * from {$table_profile} where roplo_id = '{$roplo_id}' and member_id = '{$member['mb_id']}' ");
+	$is_roplomu = sql_fetch(" select * from {$table_profile} where roplo_id = '{$roplo_id}' and member_id = '{$member['mb_id']}' ");
 }
 
 // 집필자 목록
-if ($roplo){	
-	$roplo['profiles'] = sql_fetch(" select * from {$table_profile} where roplo_id = '{$roplo_id}'");
+if ($roplo){
+	$roplo['profiles'] = Array();
+	$result = sql_query(" select * from {$table_profile} where roplo_id = '{$roplo_id}'");
+	for (; $row = sql_fetch_array($result); $i++) {
+		$roplo['profiles'][$i] = $row;
+	}
 	$roplo['profile'] = sql_fetch(" select * from {$table_profile} where roplo_id = '{$roplo_id}' and member_id='{$member['mb_id']}'");
 }
 
@@ -42,23 +45,6 @@ if ($roplo){
 			$roplo['pages'][1]['writer'] = 'Hamjin';
 			$roplo['pages'][1]['illustration'] = '#';
 			$roplo['pages'][1]['content'] = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
-	$roplo['profiles'] = Array();
-	$roplo['profiles'][0] = Array();
-		$roplo['profiles'][0]['name'] = 'John Doe';
-		$roplo['profiles'][0]['age']	= '13';
-		$roplo['profiles'][0]['biology'] = 'The end';
-	$roplo['profiles'][1] = Array();
-		$roplo['profiles'][1]['name'] = 'Hamjin';
-		$roplo['profiles'][1]['age']	= '12';
-		$roplo['profiles'][1]['biology'] = 'Hamster para';
-
-	$roplo['profile'] = '';
-	for( $i=0; $i<count($roplo['profiles']); ++$i){
-		if ($roplo['profiles'][$i]['name']==$_REQUEST['name']){
-			$roplo['profile'] = $roplo['profiles'][$i];
-			break;
-		}
-	}
 
 	$roplo['navigation'] = Array();
 		$roplo['navigation'][0] = Array();
@@ -98,4 +84,6 @@ if ($roplo){
 				$roplo['timeline']['events'][0]['href'] = '#';
 				$roplo['timeline']['events'][2]['class'] = 'default';
 				$roplo['timeline']['events'][2]['style'] = "font-family: 'Shrikhand', cursive;";
+
+
 ?>
