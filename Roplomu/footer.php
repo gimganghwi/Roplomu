@@ -1,3 +1,5 @@
-<footer>
-		ⓒ 2018 체어리트리
-</footer>
+
+			</main>
+			<!-- 메인 끝 -->
+        </section>
+    </section>
