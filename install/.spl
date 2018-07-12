@@ -1,0 +1,49 @@
+USE doge;
+
+DROP TABLE IF EXISTS `r_roplo`;
+CREATE TABLE IF NOT EXISTS `r_roplo`(
+	`id` varchar(20) NOT NULL default '',
+	`title` varchar(20) NOT NULL default '',
+	`admin_id` varchar(20) NOT NULL default '',
+	`logourl` varchar(255) NOT NULL DEFAULT '',
+	PRIMARY KEY  (`id`),
+	FOREIGN KEY (`admin_id`) REFERENCES `g5_member`(mb_id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `r_profile`;
+CREATE TABLE IF NOT EXISTS `r_profile`(
+	`id` int(11) NOT NULL auto_increment,
+	`member_id` varchar(20) NOT NULL,
+	`roplo_id` varchar(20) NOT NULL,
+	`name` varchar(20) NOT NULL default '',
+	`subname` varchar(20) NOT NULL default '',
+	`age_flag` enum('none', 'unknown', 'normal', 'demigod'),
+	`age` int(0) NOT NULL default '0',
+	`physical_age` int(0) NOT NULL default '0',
+	`biological_age` int(0) NOT NULL default '0',
+	`biology` text NOT NULL,
+	PRIMARY KEY  (`id`),
+	FOREIGN KEY (`roplo_id`) REFERENCES `r_roplo`(id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `r_timeline`;
+CREATE TABLE IF NOT EXISTS `r_timeline`(
+	`id` int(11) NOT NULL auto_increment,
+	`roplo_id` int(11) NOT NULL,
+	`type` enum('calander', 'list') NOT NULL DEFAULT 'calander',
+	`timelable` varchar(225) NOT NULL DEFAULT '',
+	PRIMARY KEY  (`id`),
+	FOREIGN KEY (`roplo_id`) REFERENCES `r_roplo`(id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+DROP TABLE IF EXISTS `r_event`;
+CREATE TABLE IF NOT EXISTS `r_event`(
+	`id` int(11) NOT NULL auto_increment,
+	`timeline_id` int(11) NOT NULL,
+	`time` tinyint(0) NOT NULL DEFAULT '0',
+	`title` varchar(255) NOT NULL DEFAULT '',
+	`subtitle` varchar(255) NOT NULL DEFAULT '',
+	`href` varchar(255) NOT NULL DEFAULT '',
+	PRIMARY KEY  (`id`),
+	FOREIGN KEY (`timeline_id`) REFERENCES `r_timeline`(id)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;

@@ -2,17 +2,9 @@
         <a id="none-button" class="aside-button" href="#none"></a>
         <img class='logo-big logo' src='http://doge.dothome.co.kr/data/roplomu/roplo/andsocks/logo-big.png'>
         <div id="paper_outter_navigation" class="pink_round_paper wrapper">
-            <ul>
-				<?php for ( $i=0; $i<count($roplo['navigation']); ++$i) { ?>
-				<li>
-					<a href='<?php echo $roplo['navigation'][$i]['href'] ?>'>
-					<span style='<?php echo $roplo['navigation'][$i]['style'] ?>'>
-						<?php echo $roplo['navigation'][$i]['text'] ?>
-					</span>
-					</a>
-				</li>
-				<?php }?>
-			</ul>
+            <?php 
+                include(CONTENT_PATH.'/content_menu.php');
+            ?>
         </div>
         <span id='content_inner_navigation' class='light_transparent_text text'>
             ANDSOCKS - When it be finished?<br>
