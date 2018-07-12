@@ -266,7 +266,7 @@ if ($w == '' || $w == 'r') {
                      wr_datetime = '".G5_TIME_YMDHIS."',
                      wr_last = '".G5_TIME_YMDHIS."',
                      wr_ip = '{$_SERVER['REMOTE_ADDR']}',
-                     wr_1 = '$wr_1',
+                     wr_1 = '$roplo_id',
                      wr_2 = '$wr_2',
                      wr_3 = '$wr_3',
                      wr_4 = '$wr_4',
@@ -699,7 +699,7 @@ if (!($w == 'u' || $w == 'cu') && $config['cf_email_use'] && $board['bo_use_emai
 delete_cache_latest($bo_table);
 
 if ($file_upload_msg)
-    alert($file_upload_msg, G5_HTTP_BBS_URL.'/board.php?bo_table='.$bo_table.'&amp;wr_id='.$wr_id.$qstr);
+    alert($file_upload_msg, BBS_URL.'/board.php?roplo_id='.$roplo_id.'&bo_table='.$bo_table.'&amp;wr_id='.$wr_id.$qstr);
 else
-    goto_url(G5_HTTP_BBS_URL.'/board.php?bo_table='.$bo_table.'&amp;wr_id='.$wr_id.$qstr);
+    goto_url(BBS_URL.'/board.php?roplo_id='.$roplo_id.'&bo_table='.$bo_table.'&amp;wr_id='.$wr_id.$qstr);
 ?>

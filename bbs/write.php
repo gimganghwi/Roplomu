@@ -419,16 +419,16 @@ $editor_js .= chk_editor_js('wr_content', $is_dhtml_editor);
 // 임시 저장된 글 수
 $autosave_count = autosave_count($member['mb_id']);
 
-include_once(G5_PATH.'/head.sub.php');
+include_once(ROPLOMU_PATH.'/head.php');
 @include_once ($board_skin_path.'/write.head.skin.php');
-include_once('./board_head.php');
+include_once(ROPLOMU_PATH.'/header.php');
 
-$action_url = https_url(G5_BBS_DIR)."/write_update.php";
+$action_url = BBS_URL."/write_update.php?roplo_id=".$roplo_id;
 
 echo '<!-- skin : '.(G5_IS_MOBILE ? $board['bo_mobile_skin'] : $board['bo_skin']).' -->';
 include_once ($board_skin_path.'/write.skin.php');
 
-include_once('./board_tail.php');
+include_once(ROPLOMU_PATH.'/footer.php');
 @include_once ($board_skin_path.'/write.tail.skin.php');
-include_once(G5_PATH.'/tail.sub.php');
+include_once(ROPLOMU_PATH.'/tail.php');
 ?>
