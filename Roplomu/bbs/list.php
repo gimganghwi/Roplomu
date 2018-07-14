@@ -189,6 +189,9 @@ if($page_rows > 0) {
             $row = sql_fetch(" select * from {$write_table} where wr_id = '{$row['wr_parent']}' ");
 
         $list[$i] = get_list($row, $board, $board_skin_url, G5_IS_MOBILE ? $board['bo_mobile_subject_len'] : $board['bo_subject_len']);
+
+        $list[$i]['href'] = str_replace(G5_BBS_URL, BBS_URL, $list[$i]['href']);
+
         if (strstr($sfl, 'subject')) {
             $list[$i]['subject'] = search_font($stx, $list[$i]['subject']);
         }
@@ -229,8 +232,8 @@ if ($is_search_bbs) {
 
 
 $write_href = '';
-if ($member['mb_level'] >= $board['bo_write_level']) {
-    $write_href = './write.php?bo_table='.$bo_table;
+if ($member['mb_level'] >= $board['bo_write_level'] && $is_roplomu ) {
+    $write_href = './write.php?bo_table='.$bo_table.'&roplo_id='.$roplo_id;
 }
 
 $nobr_begin = $nobr_end = "";
