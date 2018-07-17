@@ -307,7 +307,7 @@ if ($w == '' || $w == 'r') {
         alert('올바른 방법으로 수정하여 주십시오.', G5_BBS_URL.'/board.php?bo_table='.$bo_table);
     }
 
-    $return_url = './board.php?bo_table='.$bo_table.'&amp;wr_id='.$wr_id;
+    $return_url = './board.php?bo_table='.$bo_table.'&amp;wr_id='.$wr_id.'&roplo_id='.$roplo_id;
 
     if ($is_admin == 'super') // 최고관리자 통과
         ;
