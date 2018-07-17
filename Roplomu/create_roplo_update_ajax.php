@@ -7,12 +7,14 @@ function echo_json($msg='', $url='', $confirm=''){
 	} else {
 		$jsonObj = new \stdClass();
 		$jsonObj->msg = $msg ? $msg : '올바른 방법으로 이용해 주십시오' ;
+		$jsonObj->url = $url;
+		$jsonObj->confirm = $confirm;
 		echo json_encode( $jsonObj );
 		exit;
 	}
 }
 
-include('./common.php');
+include('./_common.php');
 
 // 세션 확인
 if (get_session('ss_check_mb_id') != $mb_id ) {
@@ -58,12 +60,12 @@ if ($w == '') {
 			logourl = '{$logourl}'";
 	sql_fetch($sql);
 	// 가입
-	$sql = "insert into {$r_table['profile']}
+	$sql = "insert into {$r_table->profile}
 			set member_id = '{$admin_id}',
 			roplo_id = '{$roplo_id}'";
 	sql_fetch($sql);
 
-	echo_json('생성 완료!');
+	echo_json('생성 완료!', ROPLOMU_URL.'/created.php?roplo_id='.$roplo_id);
 
 } else if ($w == 'u') {
 

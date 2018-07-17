@@ -203,7 +203,9 @@ $create_form_submit=ob_get_clean();
 		$('#create_roplo_form').ajaxForm({
 			url: 'create_roplo_update_ajax.php',
 			success: function (json) {
-				alert(JSON.parse(json).msg);
+				let result = JSON.parse(json);
+				alert(result.msg);
+				if ( result.href )window.location.href = result.href;
 			}
 		});
 	});
