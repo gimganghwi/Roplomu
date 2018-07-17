@@ -9,7 +9,7 @@ add_stylesheet('<link rel="stylesheet" href="'.SKIN_URL.'/style.css">', 0);
 ob_start();
 ?>
 <!-- <img src="" style=""> -->
-<i class="fas fa-check" style=""></i>
+<i class="fas fa-check" style="width:100%;font-size: 40vw;font-family: FontAwesome; text-align:center;color:Plum"></i>
 <?php
 $create_welcome_header=ob_get_clean();
 ?>
@@ -27,7 +27,7 @@ $create_welcome_header=ob_get_clean();
 	</p>
 </article>
 <div class="rp_button_wrapper" style="align-items: center;">
-	<a href="<?php echo $r_url['$roplomu_ur'].'/'.$roplo_id ?>" class="itt rp_button"> 생성된 roplo로 이동 </a>
+	<a href="<?php echo $r_url['roplo'].'?roplo_id='.$roplo_id ?>" class="itt rp_button"> 생성된 roplo로 이동 </a>
 </div>
 <div class="#" style="align-items: center;">
 	<a href="<?php echo G5_BBS_URL ?>/login.php" class=" rp_button"> roplo 관리자 </a>
