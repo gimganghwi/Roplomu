@@ -16,8 +16,18 @@ include_once(G5_PATH.'/head.sub.php');
     스크립트 설정을 켜지 않으면 사용할 수가 없습니다.
 </noscript>
 
+<a href="<?php echo $r_url->roplo ?>">홈으로</a>>
+
+<section id="basic">
+<?php include('./basic.php')?>
+</section>
+
 <section id="nav">
 <?php include('./nav.php')?>
+</section>
+
+<section id="profile_def">
+<?php include('./profile_def.php')?>
 </section>
 
 <?php include_once(G5_PATH.'/tail.sub.php'); ?>

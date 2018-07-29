@@ -19,6 +19,9 @@ if (!$is_keeper) {
 
 define('IS_KEEPER', true);
 
+// 공통 함수
+
+
 add_javascript('<script src="'.G5_JS_URL.'/jquery.form.min.js"></script>', 1);
 add_javascript('<script src="'.G5_JS_URL.'/jquery.cookie.js"></script>', 1);
 add_javascript('<script
@@ -27,4 +30,5 @@ add_javascript('<script
   crossorigin="anonymous"></script>', 1);
 add_javascript('<script src="'.KEEPER_URL.'/keeper.js"></script>', 1);
 add_javascript('<script src="'.KEEPER_URL.'/roploform.js"></script>', 1);
+add_stylesheet('<link rel="stylesheet" href="'.ROPLOMU_URL.'/default.css">', 0);
 ?>
