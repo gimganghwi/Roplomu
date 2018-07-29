@@ -1,7 +1,7 @@
 <?php include_once('./_common.php')?>
 
 <!-- 폼 시작 -->
-<form id="menu_form" method="post" enctype="multipart/form-data" > 
+<form id="menu_form" method="post" enctype="multipart/form-data" class="rf_f" > 
     <table id="menu_list">
         <thead>
             <tr>
@@ -16,8 +16,9 @@
                 <input type="hidden" name="id[]" value="<?php echo $roplo['nav'][$i]['id'] ?>" >
                 <input type="hidden" name="order[]" value="<?php echo $roplo['nav'][$i]['order'] ?>" >
                 <td><input type="text" name="name[]" value="<?php echo $roplo['nav'][$i]['name'] ?>" required></td>
-                <td><input type="text" name="prefix[]" value="<?php echo $roplo['nav'][$i]['prefix_id'] ?>"></td>
-                <td><input type="checkbox" name="delete[]" value="delete"></td>
+                <td><input type="text" name="prefix[]" value="<?php echo $roplo['nav'][$i]['prefix_id'] ?>" readonly></td>
+                <td><input type="radio" name="delete[<?php echo $i ?>]" value="" checked></td>
+                <td><input type="radio" name="delete[<?php echo $i ?>]" value="delete"></td>
             </tr>
         <?php } ?>
             <tr class="new-menu">
@@ -37,14 +38,17 @@
                             </option>
                         <?php } ?>
                     </select>
-                </td>   
-                <td><input type="checkbox" name="delete[]" value="delete"></td>
+                </td>
+                <td><input type="radio" name="delete[<?php echo $i ?>]" value="" checked></td>
+                <td><input type="radio" name="delete[<?php echo $i ?>]" value="delete"></td>
             </tr>
-            <tr>
-                <td colspan="2"><button type="button" class="add-menu">메뉴 추가</button></td>
-            </tr>
-            <button type="submit">전송</button>
         </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2"><button type="button" class="add-menu form_button   ">메뉴 추가</button></td>
+            </tr>
+            <button type="submit" class="form_button" >전송</button>
+        </tfoot>
     </table>
 </form>
 <!-- 폼 끝 -->
@@ -65,10 +69,10 @@ let newMenuElement = $(".new-menu").detach();
 let maxOrder = <?php echo $roplo['nav'][$i-1]['order'] ?>+1;
 let newMenuBtn = $('button.add-menu');
 newMenuBtn.click(function(){
-    newMenuBtn = newMenuBtn.detach();
+    // newMenuBtn = newMenuBtn.detach();
     let el = newMenuElement.clone();
     $('table#menu_list').append( el );
-    $('table#menu_list').append( newMenuBtn );
+    // $('table#menu_list').append( newMenuBtn );
     el.find("input[name^=order]").val( maxOrder++ );
 });
 
@@ -77,6 +81,7 @@ $( "table#menu_list tbody" ).sortable( {
     update: function( event, ui ) {
     $(this).children().each(function(index) {
             $(this).find('input[name^=order]').val(index + 1);
+            $(this).find('input[name^=delete]').attr("name", "delete["+(index + 1)+"]");
     });
   }
 });

@@ -13,9 +13,9 @@ for ( $i=0; $i<count($_POST['id']); $i++){
 
 	// $sql="INSERT INTO {$r_table->menu} SET `id`='{$id}', `roplo_id`='{$roplo_id}', `name`='{$name}', `prefix_id`='{$prefix}', `href`='{$href}' ON DUPLICATE KEY UPDATE `id`='{$id}', `name`='{$name}'";
 
-	if ( $delete=='delete'){
+	if ( strcmp($delete, 'delete')==0 ){
 		$sql="DELETE FROM {$r_table->menu}
-              WHERE `id`='{$id}' AND `roplo_id`={$roplo_id}";
+              WHERE `id`='{$id}' AND `roplo_id`='{$roplo_id}'";
 	} else if ( $id=='' ){
 		$sql="INSERT INTO {$r_table->menu}
               SET `roplo_id`='{$roplo_id}',
