@@ -1,6 +1,1 @@
-		</section>
-	</div>
-</div>
-<div id="footer-wrapper" class="wrapper">
-<footer> 푸처</footer>
-</div>
+<footer class="wrapper"> 푸처</footer>

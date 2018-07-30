@@ -1,34 +1,19 @@
-<div id="header-wrapper" class="wrapper">
-    <header>
-        <div id="aside-over-open" class="fas fa-bars"></div>
-        <div id="nav-masonry-open" class="fas fa-ellipsis-v"></div>
-        Roplomu
+    <header class="wrapper">
+        <div class="inner">
+            <div id="aside-over-open" class="fas fa-bars"></div>
+            <div id="nav-masonry-open" class="fas fa-ellipsis-v"></div>
+            <a id="title" href="<?php echo $r_url->roplo ?>"><?php echo $roplo['title'] ?></a>
+        </div>
     </header>
-    <nav>
+    <nav class="wrapper">
         <ul class="masonry">
-            <li>Menu1</li>
-            <li>Menu2</li>
-            <li>Menu3islong</li>
-            <li>Menu4islonglong</li>
-            <li>M5st</li>
-            <li>Menu6</li>
+            <?php for($i=0; $i < count($roplo['nav']) ; $i++){ ?>
+                <li><a href="<?php echo $roplo['nav'][$i]['href'] ?>">
+                    <?php echo $roplo['nav'][$i]['name'] ?>
+                </a></li>
+            <?php } ?>
+            <?php if (!$is_player) { ?>
+                <li><a href="<?php echo $r_url->player ?>"> 플레이어 등록 </a></li>
+            <?php } ?>
         </ul>
     </nav>
-</div>
-<div id="middle-wrapper" class="wrapper">
-    <div id="middle">
-        <!-- <aside id="aside-push"></aside> -->
-        <aside id="aside-over">
-            <nav>
-                <ul class="masonry-reverse">
-                    <li>Menu1</li>
-                    <li>Menu2</li>
-                    <li>Menu3</li>
-                    <li>Menu4</li>
-                    <li>Menu5</li>
-                    <li>Menu6</li>
-                </ul>
-            </nav>
-            <div id="aside-over-close"></div>
-        </aside>
-        <section> 

@@ -4,59 +4,62 @@ html, h1, h2, h3, h4, h5, h6, form, fieldset, img {margin:0;padding:0;border:0}
 h1, h2, h3, h4, h5, h6 {font-size:1em}
 article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {display:block}
 
-header{
-	background-color: Aliceblue;
-	color: Darkgray;
-}
-header #logo{
-	font-size: 2em;
-	text-align: center;
-}
-footer{
-	background-color: Aliceblue;
-	color: gray;
-	align-content: center;
-}
+#r_wrapper{ //display: flex; }
 
-.roplo_page, .roplo_profile{
-	margin: 10px 0px;
-	padding: 5px 10px;
-	border: 1px solid gray;
-}
+/* 플로팅 버튼 */
+.btn-floating { z-index:3; color: #fff; padding: 0; width: 55.5px; height: 55.5px; display: flex; align-items: center; justify-content: center; position: fixed; right:10px; bottom:10px; outline: 0; border: none; text-decoration: none; background: #2196F3; text-align: center; vertical-align: middle; border-radius: 50%; box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16), 0 2px 10px 0 rgba(0, 0, 0, 0.12); }
+.btn-floating:hover { background: #42A5F5; }
+.btn-floating i { font-size: 35.5px; width: 35.5px; height: 35.5px; padding: 0; margin:auto; margin: 5px; display: block; }
 
-.roplo_timeline{
-	list-style-type: none;
-    margin: 0px;
-    padding: 0px;
-}
+.roplo_timeline{ list-style-type: none; margin: 0px; padding: 0px; }
 
-.roplo_timeline li, .roplo_timeline_li{
-    display: inline-block;
-    vertical-align: top;
-	overflow: hidden;
+.roplo_timeline li, .roplo_timeline_li{ display: inline-block; vertical-align: top; overflow: hidden; }
+.roplo_timeline li.default .roplo_timeline_li{ padding: 6px; margin: 0px; width: 14.28%; border: 1px dotted Darkgray; box-sizing: border-box; }
+.roplo_timeline li.default a{ color: LightGray; text-decoration: none; }
+.roplo_timeline li.default a .time{ font-size: 1.2em; text-align: center; line-height: 0.6em; }
+.roplo_timeline li.default a .title{ font-size: 0.7em; margin: 0.5em auto; line-height: 0.6em; }
+.roplo_timeline li.default a .text{ font-size: 0.7em; line-height: 0.6em; }
+
+/* 엽서 레이아웃 */
+.postcard{ height: 100%; width: 100%; padding: 5%; box-sizing: border-box; display: flex; align-items: stretch; }
+.postcard > .pc-dr{ flex:1; display: flex; flex-direction: column; justify-content: center; }
+.postcard > .pc-msg{ margin-left:2em; flex:1; flex-direction: row; }
+
+/* 기본 폼 */
+.rf_f label{ color: Gray; padding:0.5em 0; display: inline-block; }
+.rf_f .sublabel{ font-size: 0.8em; color: Gray; opacity: 0.5; }
+.rf_f form {
+  padding: 15px;
+  margin: 20px 0; }
+.rf_f .oneline{ display: flex; flex-wrap: nowrap; justify-content:  space-between; width: 100%; align-items: center; }
+.rf_f input[type='text'], [type='email'], input[type='number'], .rf_f select, .rf_f textarea { background: linear-gradient( to right, AntiqueWhite , AliceBlue ); border: none; border-radius: 0.5em; color: MediumPurple ; letter-spacing: 1px; padding: 0.550em; margin: 0; width: 100%; -webkit-box-sizing: border-box; -moz-box-sizing: border-box; -ms-box-sizing: border-box; -o-box-sizing: border-box; box-sizing: border-box; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; -ms-transition: all 0.3s; -o-transition: all 0.3s; transition: all 0.3s; }
+.rf_f input[type='number']{ display: inline-block; background: linear-gradient( to right, AntiqueWhite , AliceBlue ); width: 30%; }
+.rf_f input[readonly]{ background: none; }
+
+.rf_f input[type='text']:focus, [type='email']:focus, textarea:focus { font-size: 1.2em; }
+.rf_f legend { display: inline-block; position: static; font-size: 0.9em; color: rgb(210,200,210); font-weight: bold; line-height: normal; text-indent: 0em; overflow: hidden;}
+.rf_f fieldset{ padding: 5px; border-top: 1px solid rgb(210,200,210); //filter: drop-shadow(0 0 5px rgba(123, 222,123,1));}
+.rf_f .form_button_wrapper, .rp_button_wrapper{ display: flex; justify-content: flex-end; }
+.rf_f .form_button , .rp_button{ letter-spacing: 1.2px; border-width:0px; border-radius: 1em; cursor: pointer; display: inline-block; outline: none; padding: 20px 35px; margin: 2px 2px; -webkit-transition: all 0.3s; -moz-transition: all 0.3s; -ms-transition: all 0.3s; -o-transition: all 0.3s; transition: all 0.3s; }
+.rf_f .form_button:hover { background: MediumPurple ; color: #F2F3EB; }
+.rf_f .form_button:not(.submit) , .rp_button:not(.itt) {border: solid 1px LightGray;}
+.rf_f .form_button.submit , .rp_button.itt{ background: Plum; color: Aliceblue ; }
+.rf_f .form_button.save{ background: none; border: 1px solid Plum; color: Plum ; /*flex-grow: 1;*/ }
+
+/* 간단한 출력 메시지 */
+article.rp_atc{ padding:0 1em; margin-left:auto; margin-right: auto; text-align:justify; }
+article.rp_atc p{ text-indent: 1em; margin: 0.7em 0; color:#ad70ad; }
+article.rp_atc p.small{ font-size: 0.8em; color:#adadad; }
+article.rp_atc h1{ color:#bba0bb; text-align: center; font-size: 1.5em; margin:1em; }
+
+/* roplo용 헤더 */
+#hd{ position: fixed; top:0; right:0;}
+#hd i {font-size:30px; line-height:31px}
+#hd > ul {display:flex; width: 100%; justify-content: flex-end;}
+#hd > ul > li {font-size:0.92em; padding: 8px 5px;}
+#hd a { margin:auto; display:inline-block; color:#646464;   text-shadow: 0 0 10px rgba(255,255,255,1) ;text-shadow: 0 0 10px rgba(255,255,255,1) ;text-shadow: 0 0 10px rgba(255,255,255,1) ;}
 }
-.roplo_timeline li.default .roplo_timeline_li{
-	padding: 6px;
-	margin: 0px;
-	width: 14.28%;
-    border: 1px dotted Darkgray;
-	box-sizing: border-box;
-}
-.roplo_timeline li.default a{
-	color: LightGray;
-	text-decoration: none;
-}
-.roplo_timeline li.default a .time{
-	font-size: 1.2em;
-	text-align: center;
-	line-height: 0.6em;
-}
-.roplo_timeline li.default a .title{
-	font-size: 0.7em;
-	margin: 0.5em auto;
-	line-height: 0.6em;
-}
-.roplo_timeline li.default a .text{
-	font-size: 0.7em;
-	line-height: 0.6em;
+#hd a:focus, #hd a:hover {color:#c6a2de7d;background:#fafafa}
+#hd a.hd-button {display:inline-block; background:#c6a2de7d; color:#fafafa; border-radius: 10px; height: 29px; padding:auto; width:56px;line-height: 30px; text-align: center}
+@media (max-width: 639px) {
 }
